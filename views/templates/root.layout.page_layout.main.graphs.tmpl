@@ -1,0 +1,100 @@
+{{define "graphs"}}
+<div class="demo-graphs mdl-shadow--2dp mdl-color--white mdl-cell mdl-cell--8-col">
+  {{template "svg_graph_defs" .}}
+  <h3> Number Of Functions in this project's Lifecycle </h3>
+  <p class="legend tests">nb of tests</p>
+  <p class="legend functions">nb of Functions</p>
+  <svg id="graph"></svg>
+
+  <style type="text/css">
+    .axis2 path,
+    .axis2 line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+    .bar2, .functions {
+      fill: orange;
+      color: orange;
+    }
+    .bar3, .tests {
+      fill: blue;
+      color: blue;
+    }
+    .bar2:hover {
+      fill: orangered ;
+    }
+    .x.axis2 path {
+      display: none;
+    }
+</style>
+<script>
+
+(function(){
+
+var margin = {top: 40, right: 20, bottom: 30, left: 40},
+    width = 619 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var x = d3.scaleBand()
+    .range([0, width]);
+
+var y = d3.scaleLinear()
+    .range([height, 0]);
+
+
+var svg = d3.select("svg#graph")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+d3.request("http://localhost:3465/function-number")
+    .mimeType("application/json")
+    .response(function(xhr) { return JSON.parse(xhr.responseText); })
+    .get(function(error, data) {
+  x.domain([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39]);
+  y.domain([0, d3.max(data.numbers40, function(d) { return d; })]);
+
+  svg.append("g")
+      .attr("class", "x axis2")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+  svg.append("g")
+      .attr("class", "y axis2")
+      .call(d3.axisLeft(y))
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("number");
+
+  svg.selectAll(".bar2")
+      .data(data.numbers40)
+    .enter().append("rect")
+      .attr("class", "bar2")
+      .attr("x", function(d, i) {
+        return x(i); })
+      .attr("width", x.bandwidth())
+      .attr("y", function(d) { return y(d); })
+      .attr("height", function(d) { return height - y(d); });
+
+  svg.selectAll(".bar3")
+      .data(data.tests40)
+    .enter().append("rect")
+      .attr("class", "bar3")
+      .attr("x", function(d, i) {
+        return x(i); })
+      .attr("width", x.bandwidth())
+      .attr("y", function(d) { return y(d); })
+      .attr("height", function(d) { return height - y(d); });
+
+});
+})();
+
+</script>
+</div>
+{{end}}

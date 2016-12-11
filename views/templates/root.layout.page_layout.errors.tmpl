@@ -1,0 +1,15 @@
+{{define "errors"}}
+  {{range .Errors}}
+  <div class="flash-error-message state-error">
+    <p class="dev-err-code dev">{{.ErrCode}}</p>
+    <p class="error-interjection">{{.ErrTitle}}</p>
+    <p class="error-message">{{.Message}}</p>
+    <div class="expandable dev-stack-trace dev">
+    	<p class="clickable-message">Expand The Error Stack Trace</p>
+        <div class="stach-trace">
+	  {{.StackTrace}}
+        </div>
+    </div> 
+  </div>
+  {{end}}
+{{end}}

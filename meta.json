@@ -1,0 +1,23 @@
+{
+  "project_name": "go-adsp-web",
+  "codename": "Juri/Snake",
+  "author_tag": "asy",
+  "conventions": [
+    "ES6_conventions",
+    "Golanf_conventions",
+    "Gulp_conventions",
+    "Sass_conventions"
+  ],
+  "jshint_conventions": "es6_conventions",
+  "rules": [
+    "must_have_jshint_valid",
+    "must_have_package_json",
+    "must_have_gulpfile",
+    "must_have_readme_file",
+    "must_have_test_counterpart_for_js"
+  ],
+  "todo_management": {
+    "todo_resolve_task": ["test_counterpart_valid", "deleted_todo_comment"]
+  }
+
+}

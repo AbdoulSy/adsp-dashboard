@@ -1,0 +1,20 @@
+{
+  "@context": "http://web.abdoulsy.eu/cards/v/0.0.1/project-card",
+  "username": "asy",
+  "token": "ae2dc6bcaaae00456ebdca93",
+  "parent": "BOSS",
+  "subscribers": {
+    "@context": "http://web.abdoulsy.eu/o/#Marklogic_Employees",
+    "list": [{
+       "username": "gshercliff",
+       "alerts": "on",
+       "frequency": "low"
+     },{
+       "username": "cogrady",
+       "alerts": "on",
+       "frequency": "low"
+     }]
+   },
+  "deployment": "ok",
+  "stage": "development"
+}

@@ -1,0 +1,54 @@
+{
+  "name": "go_adsp_web",
+  "version": "1.0.0",
+  "description": "The Go ADSP Web Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abdoulsy/go-adsp-web.git"
+  },
+  "keywords": [
+    "Go",
+    "Lang",
+    "Project",
+    "Tracker"
+  ],
+  "author": "Abdoul Sy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abdoulsy/go-adsp-web/issues"
+  },
+  "homepage": "https://github.com/abdoulsy/go-adsp-web#readme",
+  "dependencies": {
+    "autoprefixer-core": "^6.0.1",
+    "child-process": "^1.0.2",
+    "child_process": "^1.0.2",
+    "css-mqpacker": "^5.0.1",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-add-src": "^0.2.0",
+    "gulp-clean-css": "^2.0.13",
+    "gulp-concat": "^2.6.1",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-if": "^2.0.2",
+    "gulp-ignore": "^2.0.2",
+    "gulp-livereload": "^3.8.1",
+    "gulp-modernizr": "^1.0.0-alpha",
+    "gulp-plumber": "^1.1.0",
+    "gulp-postcss": "^6.2.0",
+    "gulp-rev": "^7.1.2",
+    "gulp-rev-collector": "^1.0.5",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.9.1",
+    "gulp-sync": "^0.1.4",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.7",
+    "node-notifier": "^4.6.1",
+    "pixrem": "^3.0.2",
+    "vinyl-paths": "^2.1.0",
+    "yargs": "^6.4.0"
+  }
+}
