@@ -1,13 +1,13 @@
 package main
 
 import (
-	"github.com/AbdoulSy/adspLayoutBuilder"
-	"github.com/AbdoulSy/adspPageTodolist"
-	"github.com/AbdoulSy/adspRdf"
-	"github.com/AbdoulSy/adspRouterNav"
-	"github.com/AbdoulSy/adspUser"
+    "github.com/AbdoulSy/adspPageTodolist"
+    "github.com/AbdoulSy/adspRouterNav"
+    "github.com/AbdoulSy/adspUser"
+    "github.com/AbdoulSy/adspLayoutBuilder"
 	"github.com/AbdoulSy/adspgoConfig"
-	"github.com/AbdoulSy/commitHistoryReader"
+    "github.com/AbdoulSy/adspRdf"
+  	"github.com/AbdoulSy/commitHistoryReader"
 	"html/template"
 	"log"
 	"net/http"
@@ -38,42 +38,42 @@ func index(w http.ResponseWriter, req *http.Request) {
 
 	//index var assignments
 
-	fileReader := adspRouterNav.RDFRouterDocumentBuilder{
-		Route: "/",
-		Uri: adspRdf.UriType{
-			FullUri: "http://localhost:3465/",
-		},
-	}
-	//fileReader injects content into Docss structure
-	fileReader.ReadRemoteJsonBodyInItem(&Docss)
+    fileReader := adspRouterNav.RDFRouterDocumentBuilder {
+        Route: "/",
+        Uri: adspRdf.UriType {
+            FullUri: "http://localhost:3465/",
+        },
+    }
+    //fileReader injects content into Docss structure
+    fileReader.ReadRemoteJsonBodyInItem(&Docss)
 
-	userReader := adspRouterNav.RDFRouterDocumentBuilder{
-		Route: "/current-user",
-		Uri: adspRdf.UriType{
-			FullUri: "http://localhost:3465/current-user",
-		},
-	}
+    userReader := adspRouterNav.RDFRouterDocumentBuilder {
+        Route: "/current-user",
+        Uri: adspRdf.UriType {
+            FullUri: "http://localhost:3465/current-user",
+        },
+    }
 
-	userReader.ReadRemoteJsonBodyInItem(&User)
+    userReader.ReadRemoteJsonBodyInItem(&User)
 
-	commitsReader := adspRouterNav.RDFRouterDocumentBuilder{
-		Route: "/commit-history",
-		Uri: adspRdf.UriType{
-			FullUri: "http://localhost:3465/commit-history",
-		},
-	}
-	commitsReader.ReadRemoteJsonBodyInItem(&Commits)
+    commitsReader := adspRouterNav.RDFRouterDocumentBuilder {
+        Route: "/commit-history",
+        Uri: adspRdf.UriType {
+            FullUri: "http://localhost:3465/commit-history",
+        },
+    }
+    commitsReader.ReadRemoteJsonBodyInItem(&Commits)
 
 	log.Printf("%+v", User)
 
-	pageBuilder := &adspLayoutBuilder.Builder{
+	pageBuilder := &adspLayoutBuilder.Builder {
 		Config: adspgoConfig.Configuration("HOME"),
 	}
 
 	myPage, err := pageBuilder.Build(Docss)
 
 	if err != nil {
-		log.Println(err)
+		log.Println(err);
 	}
 
 	c, er := adspLayoutBuilder.BuildBasicLayoutWithPage(myPage, User, Commits)
@@ -85,16 +85,17 @@ func index(w http.ResponseWriter, req *http.Request) {
 }
 
 func projects(w http.ResponseWriter, req *http.Request) {
-	userReader := adspRouterNav.RDFRouterDocumentBuilder{
-		Route: "/current-user",
-		Uri: adspRdf.UriType{
-			FullUri: "http://localhost:3465/current-user",
-		},
-	}
+    userReader := adspRouterNav.RDFRouterDocumentBuilder {
+        Route: "/current-user",
+        Uri: adspRdf.UriType {
+            FullUri: "http://localhost:3465/current-user",
+        },
+    }
 
-	userReader.ReadRemoteJsonBodyInItem(&User)
+    userReader.ReadRemoteJsonBodyInItem(&User)
 
-	pageBuilder := &adspLayoutBuilder.Builder{
+
+	pageBuilder := &adspLayoutBuilder.Builder {
 		Config: adspgoConfig.Configuration("PROJECTS"),
 	}
 	projectPage, err := pageBuilder.Build(Docss)
@@ -111,26 +112,26 @@ func visualisation(w http.ResponseWriter, req *http.Request) {
 	pageBuilder := &adspLayoutBuilder.Builder{
 		Config: adspgoConfig.Configuration("VISUALISATION"),
 	}
-	userReader := adspRouterNav.RDFRouterDocumentBuilder{
-		Route: "/current-user",
-		Uri: adspRdf.UriType{
-			FullUri: "http://localhost:3465/current-user",
-		},
-	}
+	userReader := adspRouterNav.RDFRouterDocumentBuilder {
+        Route: "/current-user",
+        Uri: adspRdf.UriType {
+            FullUri: "http://localhost:3465/current-user",
+        },
+    }
 
-	userReader.ReadRemoteJsonBodyInItem(&User)
+    userReader.ReadRemoteJsonBodyInItem(&User)
 
-	commitsReader := adspRouterNav.RDFRouterDocumentBuilder{
-		Route: "/commit-history",
-		Uri: adspRdf.UriType{
-			FullUri: "http://localhost:3465/commit-history",
-		},
-	}
-	commitsReader.ReadRemoteJsonBodyInItem(&Commits)
+    commitsReader := adspRouterNav.RDFRouterDocumentBuilder {
+        Route: "/commit-history",
+        Uri: adspRdf.UriType {
+            FullUri: "http://localhost:3465/commit-history",
+        },
+    }
+    commitsReader.ReadRemoteJsonBodyInItem(&Commits)
 
 	visualisationPage, err := pageBuilder.Build(Docss)
 	c, er := adspLayoutBuilder.BuildBasicLayoutWithPage(
-		visualisationPage, User, Commits)
+        visualisationPage, User, Commits)
 	err = tpl.ExecuteTemplate(w, "visualisation_layout", c)
 	if err != nil || er != nil {
 		log.Println(err)
